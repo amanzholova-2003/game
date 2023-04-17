@@ -9,7 +9,7 @@ height = 500
 display = pygame.display.set_mode((width, height))
 clock = pygame.time.Clock()
 
-background = (23, 32, 42)
+background = (23, 32, 42)                            
 
 white = (236, 240, 241)
 
@@ -40,7 +40,7 @@ score = 0
 speed = 3
 
 
-# Single Brick Class
+# Класс одиночного кирпича
 class Brick:
     def __init__(self, x, y, color, speed):
         self.x = x
@@ -61,7 +61,7 @@ class Brick:
             self.speed *= -1
 
 
-# Complete Stack
+# Полный стек
 class Stack:
     def __init__(self):
         global colorIndex
@@ -92,7 +92,7 @@ class Stack:
         elif score%5 == 0:
             speed += 1
         
-        newBrick = Brick(width, y - brickH, color[colorIndex], speed)
+        newBrick = Brick(2*width, y - brickH, color[colorIndex], speed)
         colorIndex += 1
         self.initSize += 1
         self.stack.append(newBrick)
@@ -122,7 +122,7 @@ class Stack:
 
         brickW = self.stack[self.initSize - 1].w
 
-# Game Over
+# игра окончена
 def gameOver():
     loop = True
 
@@ -148,20 +148,20 @@ def gameOver():
         pygame.display.update()
         clock.tick()
 
-# Displaying the Score on Screen
+# Отображение результатов на экране
 def showScore():
     font = pygame.font.SysFont("Forte", 30)
     text = font.render("Score: " + str(score), True, white)
     display.blit(text, (10, 10))
 
 
-# Close the Window
+# Закрой окно
 def close():
     pygame.quit()
     sys.exit()
 
 
-# The Main Game Loop
+# Основной игровой цикл
 def gameLoop():
     global brickW, brickH, score, colorIndex, speed
     loop = True
